@@ -1,3 +1,4 @@
+import axios from "axios"
 import { useParams } from "react-router-dom"
 import useFetch from './useFetch'
 
@@ -7,9 +8,20 @@ const BlogDetails = () => {
 
     const { data : blog, error, isPending } = useFetch('http://localhost:8002/blogs/' + id)
 
+    const handleClick = () => {
+
+        axios.delete('http://localhost:8002/blogs/' + id)
+
+            .then( response => {
+
+                window.location.replace('/')
+
+            })
+    }
+
     return ( 
 
-        <div className="blod-details">
+        <div className="blog-details">
 
             <article>
 
@@ -18,14 +30,20 @@ const BlogDetails = () => {
                 {error && <div>Cannot fetch data from the resources</div>}
 
                 {blog && ( 
-
+                    
                     <article>
 
                         <h2> {blog.title}</h2>
 
                         <p> Written by {blog.author}</p>
 
-                        <body>{blog.body}</body>
+                        <div>{blog.body}</div>
+
+                         <button onClick={ handleClick }>
+
+                            delete
+
+                        </button>
 
                     </article>
 

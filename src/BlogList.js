@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 
 const BlogList = ({ blogs, title, handleClick }) => {
-    console.log('data', blogs)
-
+    
     return ( 
 
         <div className="blog-preview">
@@ -12,19 +11,13 @@ const BlogList = ({ blogs, title, handleClick }) => {
             { blogs.map( blog => (
 
                 
-                <Link to={`blog/${blog.id}`}>
+                <Link to={`blog/${blog.id}`} key= {blog.id }>
 
-                    <div className="blog-preview" key= {blog.id }>
+                    <div className="blog-preview" >
 
                     <h2>{ blog.title }</h2>
 
                     <p>Written by { blog.author }</p>
-
-                    <button onClick={ (id) => handleClick(blog.id)}>
-
-                        delete
-
-                    </button>
 
                     </div>
                 

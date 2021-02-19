@@ -22,13 +22,17 @@ const Create = () => {
 
         const blog = JSON.stringify({ title, body, author })
 
-        axios.post('http://localhost:8002/blogs', 
+        fetch('http://localhost:8002/blogs', 
 
         {
+         method: 'POST',
+         body : blog,
+         headers: {
+             'content-type': 'application/json'
+         }
+        }
 
-            data: JSON.stringify(blog)
-
-        }).then( response => {
+        ).then( response => {
             
             setIsPending(false)
 
