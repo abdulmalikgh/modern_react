@@ -36,13 +36,13 @@ const useFetch = (url) => {
 
                }
 
-               
-
            })
     }
 
     // call useEffect here
     useEffect( () => {
+        
+        let isSubscribe = true
 
         setTimeout(function(){
 
@@ -50,8 +50,14 @@ const useFetch = (url) => {
 
         }, 1000)
 
-    }, [])
+        return () => {
 
+            isSubscribe = false
+            
+        }
+        
+    }, [url])
+    
     // return data
 
     return {
